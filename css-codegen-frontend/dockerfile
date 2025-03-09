@@ -1,0 +1,24 @@
+# ใช้ Node.js เป็น Base Image
+FROM node:18
+
+# กำหนด Working Directory
+WORKDIR /app
+
+# คัดลอกไฟล์ Package และติดตั้ง dependencies
+COPY package.json package-lock.json ./
+RUN npm install --legacy-peer-deps
+
+# คัดลอกโค้ดทั้งหมด
+COPY . .
+
+# ตรวจสอบไฟล์ก่อน Build
+RUN ls -la
+
+# Build โปรเจกต์ (สำหรับ Vite)
+RUN npm run build || (echo "Build failed" && exit 1)
+
+# ใช้ Vite เป็น Development Server
+CMD ["npm", "run", "dev", "--", "--host"]
+
+# เปิดพอร์ต 5173 สำหรับ React
+EXPOSE 5173

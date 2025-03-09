@@ -11,9 +11,9 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 // ✅ ดึงค่าจาก .env
-const OLLAMA_MODEL = process.env.OLLAMA_MODEL || "llama3:8b";
-const OLLAMA_HOST = process.env.OLLAMA_HOST || "http://127.0.0.1:11434";
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+const OLLAMA_MODEL = process.env.OLLAMA_MODEL || "tinyllama";
+const OLLAMA_HOST = process.env.OLLAMA_HOST || "ollama:11434";
+const FRONTEND_URL = process.env.FRONTEND_URL || "frontend:5173";
 const PORT = process.env.PORT || 5050;
 
 console.log(`🦙 Using Ollama Model: ${OLLAMA_MODEL}`);
@@ -21,7 +21,7 @@ console.log(`🔗 Connecting to Ollama at: ${OLLAMA_HOST}`);
 
 // ✅ CORS Configuration
 app.use(cors({
-    origin: FRONTEND_URL,
+    origin: "*",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
 }));

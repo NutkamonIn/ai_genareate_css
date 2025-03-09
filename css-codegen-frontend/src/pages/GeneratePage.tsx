@@ -21,23 +21,23 @@ export default function GeneratePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
       });
-
+    
       if (!response.ok) throw new Error("❌ Failed to fetch CSS from server.");
-
+    
       const data = await response.json();
       console.log("API Response:", data); // Debugging
-
+    
       if (data.success && data.cssCode) {
         setCssCode(data.cssCode);
       } else {
         throw new Error("🤖 AI could not generate CSS. Try again.");
       }
     } catch (err) {
-      setError(err.message);
+      setError((err as Error).message); // ✅ แก้ไขตรงนี้
     } finally {
       setIsLoading(false);
-    }
-  };
+      }
+    };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(cssCode);

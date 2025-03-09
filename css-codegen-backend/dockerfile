@@ -1,0 +1,20 @@
+# ใช้ Node.js 20
+FROM node:20
+
+# ตั้งค่าที่ทำงานใน Container
+WORKDIR /app
+
+# คัดลอก package.json และ package-lock.json ก่อน เพื่อแคชการติดตั้ง dependencies
+COPY package.json package-lock.json ./
+
+# ติดตั้ง dependencies
+RUN npm install
+
+# คัดลอกไฟล์ทั้งหมดเข้าไปใน Container
+COPY . .
+
+# เปิดพอร์ต 5050
+EXPOSE 5050
+
+# คำสั่งเริ่มต้นของ Container
+CMD ["npm", "start"]
