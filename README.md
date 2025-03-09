@@ -1,10 +1,10 @@
 ขั้นตอนที่1
 ```sh
-git clone https://github.com/NutkamonIn/backup
+git clone https://github.com/NutkamonIn/ai_genareate_css
 ```
 ขั้นตอนที่2
 ```sh
-cd backup
+cd ai_genareate_css
 ```
 ขั้นตอนที่3
 ```sh
